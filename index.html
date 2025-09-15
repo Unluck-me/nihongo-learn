@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 点击播放音频（保持原有逻辑，适配wav格式）
         block.addEventListener('click', function() {
             const soundKey = this.getAttribute('data-sound');
-            const audioPath = `audio/${soundKey}.wav`;
+            const audioPath = `/nihongo/${soundKey}.wav`;
             const audio = new Audio(audioPath);
             audio.play().catch(error => {
                 console.log(`播放失败：${soundKey}.wav 可能不存在或浏览器限制`, error);
