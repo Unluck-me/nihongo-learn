@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 标题样式 */
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0 10px; /* 上下边距调整 */
+            color: #333;
+        }
+
+        /* 分隔线样式 */
+        .separator {
+            width: 80%;
+            margin: 0 auto 20px; /* 居中显示，与下方容器保持间距 */
+            border: none;
+            border-top: 2px solid #ddd;
+        }
+
+        .outer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .row-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nihongo {
+            width: 80px;
+            height: 80px;
+            background-color: #4a90e2;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+            text-align: center;
+        }
+
+        .nihongo:hover {
+            background-color: #2c3e50;
+        }
+
+        .nihongo-none {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .kana {
+            font-size: 24px;
+            margin-bottom: 4px;
+            line-height: 1;
+        }
+
+        .romaji {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1;
+            height: 14px;
+        }
+
+        .n-row {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题和分隔线 -->
+    <h1 class="title">日语平假名50音</h1>
+    <hr class="separator">
+
+    <div class="outer-container">
+        <!-- 第1行：あ行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="a"><span class="kana">あ</span><span class="romaji">a</span></div>
+            <div class="nihongo" data-sound="i"><span class="kana">い</span><span class="romaji">i</span></div>
+            <div class="nihongo" data-sound="u"><span class="kana">う</span><span class="romaji">u</span></div>
+            <div class="nihongo" data-sound="e"><span class="kana">え</span><span class="romaji">e</span></div>
+            <div class="nihongo" data-sound="o"><span class="kana">お</span><span class="romaji">o</span></div>
+        </div>
+
+        <!-- 第2行：か行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="ka"><span class="kana">か</span><span class="romaji">ka</span></div>
+            <div class="nihongo" data-sound="ki"><span class="kana">き</span><span class="romaji">ki</span></div>
+            <div class="nihongo" data-sound="ku"><span class="kana">く</span><span class="romaji">ku</span></div>
+            <div class="nihongo" data-sound="ke"><span class="kana">け</span><span class="romaji">ke</span></div>
+            <div class="nihongo" data-sound="ko"><span class="kana">こ</span><span class="romaji">ko</span></div>
+        </div>
+
+        <!-- 第3行：さ行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="sa"><span class="kana">さ</span><span class="romaji">sa</span></div>
+            <div class="nihongo" data-sound="shi"><span class="kana">し</span><span class="romaji">shi</span></div>
+            <div class="nihongo" data-sound="su"><span class="kana">す</span><span class="romaji">su</span></div>
+            <div class="nihongo" data-sound="se"><span class="kana">せ</span><span class="romaji">se</span></div>
+            <div class="nihongo" data-sound="so"><span class="kana">そ</span><span class="romaji">so</span></div>
+        </div>
+
+        <!-- 第4行：た行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="ta"><span class="kana">た</span><span class="romaji">ta</span></div>
+            <div class="nihongo" data-sound="chi"><span class="kana">ち</span><span class="romaji">chi</span></div>
+            <div class="nihongo" data-sound="tsu"><span class="kana">つ</span><span class="romaji">tsu</span></div>
+            <div class="nihongo" data-sound="te"><span class="kana">て</span><span class="romaji">te</span></div>
+            <div class="nihongo" data-sound="to"><span class="kana">と</span><span class="romaji">to</span></div>
+        </div>
+
+        <!-- 第5行：な行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="na"><span class="kana">な</span><span class="romaji">na</span></div>
+            <div class="nihongo" data-sound="ni"><span class="kana">に</span><span class="romaji">ni</span></div>
+            <div class="nihongo" data-sound="nu"><span class="kana">ぬ</span><span class="romaji">nu</span></div>
+            <div class="nihongo" data-sound="ne"><span class="kana">ね</span><span class="romaji">ne</span></div>
+            <div class="nihongo" data-sound="no"><span class="kana">の</span><span class="romaji">no</span></div>
+        </div>
+
+        <!-- 第6行：は行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="ha"><span class="kana">は</span><span class="romaji">ha</span></div>
+            <div class="nihongo" data-sound="hi"><span class="kana">ひ</span><span class="romaji">hi</span></div>
+            <div class="nihongo" data-sound="fu"><span class="kana">ふ</span><span class="romaji">fu</span></div>
+            <div class="nihongo" data-sound="he"><span class="kana">へ</span><span class="romaji">he</span></div>
+            <div class="nihongo" data-sound="ho"><span class="kana">ほ</span><span class="romaji">ho</span></div>
+        </div>
+
+        <!-- 第7行：ま行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="ma"><span class="kana">ま</span><span class="romaji">ma</span></div>
+            <div class="nihongo" data-sound="mi"><span class="kana">み</span><span class="romaji">mi</span></div>
+            <div class="nihongo" data-sound="mu"><span class="kana">む</span><span class="romaji">mu</span></div>
+            <div class="nihongo" data-sound="me"><span class="kana">め</span><span class="romaji">me</span></div>
+            <div class="nihongo" data-sound="mo"><span class="kana">も</span><span class="romaji">mo</span></div>
+        </div>
+
+        <!-- 第8行：や行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="ya"><span class="kana">や</span><span class="romaji">ya</span></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo" data-sound="yu"><span class="kana">ゆ</span><span class="romaji">yu</span></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo" data-sound="yo"><span class="kana">よ</span><span class="romaji">yo</span></div>
+        </div>
+
+        <!-- 第9行：わ行 -->
+        <div class="row-container">
+            <div class="nihongo" data-sound="wa"><span class="kana">わ</span><span class="romaji">wa</span></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo" data-sound="wo"><span class="kana">を</span><span class="romaji">wo</span></div>
+        </div>
+
+        <!-- 第10行：ん行 -->
+        <div class="row-container n-row">
+            <div class="nihongo" data-sound="n"><span class="kana">ん</span><span class="romaji">n</span></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo-none"></div>
+            <div class="nihongo-none"></div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nihongo').forEach(block => {
+            block.addEventListener('click', function() {
+                const sound = this.getAttribute('data-sound');
+                console.log(`播放 "${this.querySelector('.kana').textContent}" 的读音: ${sound}`);
+            });
+        });
+    </script>
+</body>
+</html>
