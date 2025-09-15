@@ -177,12 +177,58 @@
     </div>
 
     <script>
-        document.querySelectorAll('.nihongo').forEach(block => {
-            block.addEventListener('click', function() {
-                const sound = this.getAttribute('data-sound');
-                console.log(`播放 "${this.querySelector('.kana').textContent}" 的读音: ${sound}`);
+document.addEventListener('DOMContentLoaded', function() {
+    // 创建提示框元素
+    const tooltip = document.createElement('div');
+    tooltip.style.position = 'absolute';
+    tooltip.style.padding = '5px 10px';
+    tooltip.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    tooltip.style.color = 'white';
+    tooltip.style.borderRadius = '4px';
+    tooltip.style.fontSize = '14px';
+    tooltip.style.pointerEvents = 'none'; // 不影响鼠标交互
+    tooltip.style.zIndex = '1000';
+    tooltip.style.display = 'none';
+    document.body.appendChild(tooltip);
+
+    // 获取所有假名元素
+    const blocks = document.querySelectorAll('.nihongo');
+    
+    blocks.forEach(block => {
+        // 鼠标悬浮时显示提示
+        block.addEventListener('mouseover', function(e) {
+            const kana = this.querySelector('.kana').textContent;
+            tooltip.textContent = `播放${kana}的读音`;
+            tooltip.style.display = 'block';
+            // 提示框跟随鼠标
+            updateTooltipPosition(e);
+        });
+
+        // 鼠标移动时更新提示框位置
+        block.addEventListener('mousemove', updateTooltipPosition);
+
+        // 鼠标离开时隐藏提示
+        block.addEventListener('mouseout', function() {
+            tooltip.style.display = 'none';
+        });
+
+        // 点击播放音频
+        block.addEventListener('click', function() {
+            const soundKey = this.getAttribute('data-sound');
+            const audioPath = `audio/${soundKey}.mp3`; // 音频路径根据实际情况修改
+            const audio = new Audio(audioPath);
+            audio.play().catch(error => {
+                console.log(`播放失败: ${error}`);
             });
         });
+    });
+
+    // 更新提示框位置（位于鼠标右下方）
+    function updateTooltipPosition(e) {
+        tooltip.style.left = `${e.pageX + 10}px`;
+        tooltip.style.top = `${e.pageY + 10}px`;
+    }
+});
     </script>
 </body>
 </html>
