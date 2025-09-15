@@ -8,14 +8,14 @@
         .title {
             text-align: center;
             font-size: 24px;
-            margin: 20px 0 10px; /* 上下边距调整 */
+            margin: 20px 0 10px;
             color: #333;
         }
 
         /* 分隔线样式 */
         .separator {
             width: 80%;
-            margin: 0 auto 20px; /* 居中显示，与下方容器保持间距 */
+            margin: 0 auto 20px;
             border: none;
             border-top: 2px solid #ddd;
         }
@@ -85,6 +85,7 @@
     <hr class="separator">
 
     <div class="outer-container">
+        <!-- 各行假名内容保持不变 -->
         <!-- 第1行：あ行 -->
         <div class="row-container">
             <div class="nihongo" data-sound="a"><span class="kana">あ</span><span class="romaji">a</span></div>
@@ -94,7 +95,7 @@
             <div class="nihongo" data-sound="o"><span class="kana">お</span><span class="romaji">o</span></div>
         </div>
 
-        <!-- 第2行：か行 -->
+ <!-- 第2行：か行 -->
         <div class="row-container">
             <div class="nihongo" data-sound="ka"><span class="kana">か</span><span class="romaji">ka</span></div>
             <div class="nihongo" data-sound="ki"><span class="kana">き</span><span class="romaji">ki</span></div>
@@ -174,61 +175,25 @@
             <div class="nihongo-none"></div>
             <div class="nihongo-none"></div>
         </div>
-    </div>
+      </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 创建提示框元素
-    const tooltip = document.createElement('div');
-    tooltip.style.position = 'absolute';
-    tooltip.style.padding = '5px 10px';
-    tooltip.style.backgroundColor = 'rgba(0,0,0,0.8)';
-    tooltip.style.color = 'white';
-    tooltip.style.borderRadius = '4px';
-    tooltip.style.fontSize = '14px';
-    tooltip.style.pointerEvents = 'none'; // 不影响鼠标交互
-    tooltip.style.zIndex = '1000';
-    tooltip.style.display = 'none';
-    document.body.appendChild(tooltip);
-
-    // 获取所有假名元素
-    const blocks = document.querySelectorAll('.nihongo');
-    
-    blocks.forEach(block => {
-        // 鼠标悬浮时显示提示
-        block.addEventListener('mouseover', function(e) {
-            const kana = this.querySelector('.kana').textContent;
-            tooltip.textContent = `播放${kana}的读音`;
-            tooltip.style.display = 'block';
-            // 提示框跟随鼠标
-            updateTooltipPosition(e);
-        });
-
-        // 鼠标移动时更新提示框位置
-        block.addEventListener('mousemove', updateTooltipPosition);
-
-        // 鼠标离开时隐藏提示
-        block.addEventListener('mouseout', function() {
-            tooltip.style.display = 'none';
-        });
-
-        // 点击播放音频
-        block.addEventListener('click', function() {
-            const soundKey = this.getAttribute('data-sound');
-            const audioPath = `audio/${soundKey}.mp3`; // 音频路径根据实际情况修改
-            const audio = new Audio(audioPath);
-            audio.play().catch(error => {
-                console.log(`播放失败: ${error}`);
+        document.addEventListener('DOMContentLoaded', function() {
+            const blocks = document.querySelectorAll('.nihongo');
+            
+            blocks.forEach(block => {
+                block.addEventListener('click', function() {
+                    const soundKey = this.getAttribute('data-sound');
+                    // 关键修改：将音频格式从mp3改为wav，匹配你的文件格式
+                    const audioPath = `audio/${soundKey}.wav`;
+                    
+                    const audio = new Audio(audioPath);
+                    audio.play().catch(error => {
+                        console.log(`播放失败：${soundKey}.wav 可能不存在或浏览器限制`, error);
+                    });
+                });
             });
         });
-    });
-
-    // 更新提示框位置（位于鼠标右下方）
-    function updateTooltipPosition(e) {
-        tooltip.style.left = `${e.pageX + 10}px`;
-        tooltip.style.top = `${e.pageY + 10}px`;
-    }
-});
     </script>
 </body>
 </html>
