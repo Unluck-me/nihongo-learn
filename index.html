@@ -178,22 +178,58 @@
       </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const blocks = document.querySelectorAll('.nihongo');
-            
-            blocks.forEach(block => {
-                block.addEventListener('click', function() {
-                    const soundKey = this.getAttribute('data-sound');
-                    // 关键修改：将音频格式从mp3改为wav，匹配你的文件格式
-                    const audioPath = `audio/${soundKey}.wav`;
-                    
-                    const audio = new Audio(audioPath);
-                    audio.play().catch(error => {
-                        console.log(`播放失败：${soundKey}.wav 可能不存在或浏览器限制`, error);
-                    });
-                });
+document.addEventListener('DOMContentLoaded', function() {
+    // 创建悬浮提示窗元素
+    const tooltip = document.createElement('div');
+    tooltip.style.position = 'absolute';
+    tooltip.style.padding = '5px 10px';
+    tooltip.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    tooltip.style.color = 'white';
+    tooltip.style.borderRadius = '4px';
+    tooltip.style.fontSize = '14px';
+    tooltip.style.pointerEvents = 'none'; // 不干扰鼠标点击
+    tooltip.style.zIndex = '1000';
+    tooltip.style.display = 'none';
+    document.body.appendChild(tooltip);
+
+    // 获取所有假名方块
+    const blocks = document.querySelectorAll('.nihongo');
+    
+    blocks.forEach(block => {
+        // 鼠标悬浮时显示提示
+        block.addEventListener('mouseover', function(e) {
+            const kana = this.querySelector('.kana').textContent;
+            tooltip.textContent = `播放${kana}的读音`;
+            tooltip.style.display = 'block';
+            updateTooltipPosition(e);
+        });
+
+        // 鼠标移动时跟随提示窗
+        block.addEventListener('mousemove', updateTooltipPosition);
+
+        // 鼠标离开时隐藏提示
+        block.addEventListener('mouseout', function() {
+            tooltip.style.display = 'none';
+        });
+
+        // 点击播放音频（保持原有逻辑，适配wav格式）
+        block.addEventListener('click', function() {
+            const soundKey = this.getAttribute('data-sound');
+            const audioPath = `audio/${soundKey}.wav`;
+            const audio = new Audio(audioPath);
+            audio.play().catch(error => {
+                console.log(`播放失败：${soundKey}.wav 可能不存在或浏览器限制`, error);
             });
         });
+    });
+
+    // 更新提示窗位置（位于鼠标右下方）
+    function updateTooltipPosition(e) {
+        tooltip.style.left = `${e.pageX + 10}px`;
+        tooltip.style.top = `${e.pageY + 10}px`;
+    }
+});
+
     </script>
 </body>
 </html>
